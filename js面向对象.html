@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title></title>
+	<style>
+		#div1 input{
+			background:white;
+		}
+		#div1 input.active{
+			background:yellow;
+		}
+		#div1 div{
+			width:200px;
+			height:200px;
+			background:#ccc;
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div id="div1">
+		<input type="button" class="active" value="aaa">
+		<input type="button" value="bbb">
+		<input type="button" value="ccc">
+		<div style="display:block;">aaa</div>
+		<div>dfasd</div>
+		<div>afdasfsdfaa</div>
+	</div>
+	<script type="text/javascript">
+		/*window.onload=function(){
+			var outerDiv=document.getElementById("div1");
+			var btn=outerDiv.getElementsByTagName("input");
+			var innerDiv=outerDiv.getElementsByTagName("div");
+
+			for(var i=0;i<btn.length;i++){
+				btn[i].index=i;
+				btn[i].onclick=function(){
+					
+					for(var i=0;i<btn.length;i++){
+						btn[i].className="";
+						innerDiv[i].style.display="none";
+					}
+					this.className="active";
+					innerDiv[this.index].style.display="block";
+
+				};
+			}
+		}*/
+
+		window.onload=function(){
+			new TabSwitch("div1")	
+		};
+		
+		function TabSwitch(id){
+			
+			var _this=this;
+			var outerDiv=document.getElementById(id);
+			
+			this.btn=outerDiv.getElementsByTagName("input");
+			this.innerDiv=outerDiv.getElementsByTagName("div");
+
+			for(var i=0;i<this.btn.length;i++)
+			{
+				this.btn[i].index=i;
+				this.btn[i].onclick=function(){
+					_this.fnClick(this);
+				};
+
+			}
+		}
+
+		TabSwitch.prototype.fnClick=function(btn){
+			// alert(this);
+			for(var i=0;i<this.btn.length;i++)
+			{
+				this.btn[i].className="";
+				this.innerDiv[i].style.display="none";
+			}
+			btn.className="active";
+			this.innerDiv[btn.index].style.display="block";
+		}
+
+	</script>
+</body>
+</html>
