@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>JS拖拽_面向过程</title>
+	<style type="text/css">
+		#div1{
+			width:200px;
+			height:200px;
+			background:yellow;
+			position:absolute;
+		}
+	</style>
+</head>
+<body>
+	<div id="div1"></div>
+</body>
+<script type="text/javascript">
+	window.onload=function()
+	{
+		var oDiv=document.getElementById("div1");
+		oDiv.onmousedown=function(ev)
+		{
+			var oEvent=ev||event;
+
+			var disX=oEvent.clientX-oDiv.offsetLeft;
+			var disY=oEvent.clientY-oDiv.offsetTop;
+
+			document.onmousemove=function(ev)
+			{
+				var oEvent=ev||event;
+
+				oDiv.style.left=oEvent.clientX-disX+"px";
+				oDiv.style.top=oEvent.clientY-disY+"px";
+			}
+
+			document.onmouseup=function()
+			{
+				document.onmousedown=null;
+				document.onmousemove=null;
+			}
+
+		}
+	}
+</script>
+</html>
